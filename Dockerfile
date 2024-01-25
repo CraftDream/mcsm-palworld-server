@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q https://github.com/itzg/rcon-cli/releases/download/1.6.4/rcon-cli_1.6.4_linux_amd64.tar.gz -O - | tar -xz
+RUN wget -q https://hub.nuaa.cf/itzg/rcon-cli/releases/download/1.6.4/rcon-cli_1.6.4_linux_amd64.tar.gz -O - | tar -xz
 RUN mv rcon-cli /usr/bin/rcon-cli
 
 ENV PORT= \
@@ -32,7 +32,9 @@ RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/
 
 RUN mv /home/steam/server/backup.sh /usr/local/bin/backup
 
-WORKDIR /home/steam/server
+RUN mkdir -p /workspace
+RUN mv /home/steam/server /workspace
+WORKDIR /workspace
 
 HEALTHCHECK --start-period=5m \
     CMD pgrep "PalServer-Linux" > /dev/null || exit 1
