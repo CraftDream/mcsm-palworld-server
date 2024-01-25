@@ -1,8 +1,8 @@
 #!/bin/bash
 
 DATE=$(date +"%Y-%m-%d_%H-%M-%S")
-FILE_PATH="/palworld/backups/palworld-save-${DATE}.tar.gz"
-cd /palworld/Pal/ || exit
+FILE_PATH="/workspace/backups/palworld-save-${DATE}.tar.gz"
+cd /workspace/Pal/ || exit
 
-tar -zcf "$FILE_PATH" "Saved/"
+tar -zcf "$FILE_PATH" "workspace/Saved/"
 echo "backup created at $FILE_PATH"
