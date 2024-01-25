@@ -1,6 +1,6 @@
 #!/bin/bash
 
-STARTCOMMAND="./PalServer.sh"
+STARTCOMMAND="/workspace/PalServer.sh"
 
 if [ -n "${PORT}" ]; then
     STARTCOMMAND="${STARTCOMMAND} -port=${PORT}"
@@ -42,29 +42,29 @@ if [ "${MULTITHREADING}" = true ]; then
     STARTCOMMAND="${STARTCOMMAND} -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS"
 fi
 
-cd /palworld || exit
+cd /workspace || exit
 
 printf "\e[0;32m*****CHECKING FOR EXISTING CONFIG*****\e[0m\n"
 
-if [ ! -f /palworld/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini ]; then
+if [ ! -f /workspace/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini ]; then
 
     printf "\e[0;32m*****GENERATING CONFIG*****\e[0m\n"
 
     # Server will generate all ini files after first run.
-    su steam -c "timeout --preserve-status 15s ./PalServer.sh 1> /dev/null "
+    su steam -c "timeout --preserve-status 15s /workspace/PalServer.sh 1> /dev/null "
 
     # Wait for shutdown
     sleep 5
-    cp /palworld/DefaultPalWorldSettings.ini /palworld/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
+    cp /workspace/DefaultPalWorldSettings.ini /workspace/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
 fi
 
 if [ -n "${RCON_ENABLED}" ]; then
     echo "RCON_ENABLED=${RCON_ENABLED}"
-    sed -i "s/RCONEnabled=[a-zA-Z]*/RCONEnabled=$RCON_ENABLED/" /palworld/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
+    sed -i "s/RCONEnabled=[a-zA-Z]*/RCONEnabled=$RCON_ENABLED/" /workspace/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
 fi
 if [ -n "${RCON_PORT}" ]; then
     echo "RCON_PORT=${RCON_PORT}"
-    sed -i "s/RCONPort=[0-9]*/RCONPort=$RCON_PORT/" /palworld/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
+    sed -i "s/RCONPort=[0-9]*/RCONPort=$RCON_PORT/" /workspace/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
 fi
 
 # Configure RCON settings
