@@ -31,14 +31,16 @@ ENV PORT= \
 COPY ./scripts/* /home/steam/server/
 RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh
 
-RUN mv /home/steam/server/backup.sh /usr/local/bin/backup
-
 RUN mkdir -p /workspace
-RUN mv /home/steam/server /workspace
+
+RUN mv /home/steam/server/backup.sh /usr/local/bin/palbackup
+RUN mv /home/steam/server/start.sh /usr/local/bin/palstart
+RUN mv /home/steam/server/init.sh /usr/local/bin/palinit
+
 WORKDIR /workspace
 
 HEALTHCHECK --start-period=5m \
     CMD pgrep "PalServer-Linux" > /dev/null || exit 1
 
 EXPOSE ${PORT} ${RCON_PORT}
-ENTRYPOINT exec bash init.sh
+ENTRYPOINT exec palinit
