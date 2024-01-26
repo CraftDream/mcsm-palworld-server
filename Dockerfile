@@ -31,7 +31,7 @@ ENV PORT= \
 COPY ./scripts/* /home/steam/server/
 RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh
 
-RUN mkdir -p /workspace
+RUN mkdir -p /workspace /workspace_mirror
 
 RUN mv /home/steam/server/backup.sh /usr/local/bin/palbackup
 RUN mv /home/steam/server/start.sh /usr/local/bin/palstart
