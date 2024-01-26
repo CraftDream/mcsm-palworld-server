@@ -83,4 +83,6 @@ printf "\e[0;32m*****正在启动服务器*****\e[0m\n"
 echo "${STARTCOMMAND}"
 su steam -c nohup "${STARTCOMMAND}" &
 
+sleep 15
+
 rcon-cli
