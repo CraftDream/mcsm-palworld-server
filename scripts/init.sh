@@ -9,12 +9,12 @@ else
     exit 1
 fi
 
-mkdir -p /palworld/backups
-chown -R steam:steam /palworld
+mkdir -p /workspace/backups
+chown -R steam:steam /workspace
 
 if [ "${UPDATE_ON_BOOT}" = true ]; then
     printf "\e[0;32m*****STARTING INSTALL/UPDATE*****\e[0m\n"
-    su steam -c '/home/steam/steamcmd/steamcmd.sh +force_install_dir "/palworld" +login anonymous +app_update 2394010 validate +quit'
+    su steam -c '/home/steam/steamcmd/steamcmd.sh +force_install_dir "/workspace" +login anonymous +app_update 2394010 validate +quit'
 fi
 
 term_handler() {
@@ -29,6 +29,3 @@ term_handler() {
 
 trap 'term_handler' SIGTERM
 
-./start.sh &
-killpid="$!"
-wait $killpid
