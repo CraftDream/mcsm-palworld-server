@@ -39,9 +39,9 @@ RUN mv /home/steam/server/init.sh /usr/local/bin/palinit
 
 RUN palinit
 
-RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/download/1.3.0-Update-2/PalServer-Linux-Test-Patch-Update-2 -o /tmp/PalServer-Linux-Test &&\
-    mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test &&\
-    chmod +x /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
+RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/download/1.3.0-Update-3-Beta/PalServer-Linux-Test-Patch-Update-3-Beta -o /tmp/PalServer-Linux-Test &&\
+    chmod +x /tmp/PalServer-Linux-Test &&\
+    mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
 
 RUN cp -r /workspace/* /workspace_mirror/
 RUN rm -rf /workspace/*
