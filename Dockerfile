@@ -43,9 +43,8 @@ RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/d
     chmod +x /tmp/PalServer-Linux-Test &&\
     mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
 
-RUN cp -r /workspace/* /workspace_mirror/
+COPY /workspace/* /workspace_mirror/
 RUN rm -rf /workspace/*
-RUN chattr -R -e /workspace_mirror
 
 HEALTHCHECK --start-period=5m \
     CMD pgrep "PalServer-Linux" > /dev/null || exit 1
