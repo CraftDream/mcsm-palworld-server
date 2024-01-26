@@ -34,7 +34,7 @@ Keep in mind that you'll need to change the [environment variables](#environment
 
 ### Docker Compose
 
-This repository includes an example [docker-compose.yml](example/docker-compose.yml) file you can use to setup your server.
+This repository includes an example [docker-compose.yml](/docker-compose.yml) file you can use to setup your server.
 
 ```yml
 services:
@@ -133,6 +133,11 @@ It is highly recommended you set the following environment values before startin
 ** Make sure you know what you are doing when running this option enabled
 
 *** Required for docker stop to save and gracefully close the server
+
+> [!IMPORTANT]
+> Boolean values used in environment variables are case sensitive because they are used in the shell script.
+>
+> They must be set using exactly `true` or `false` for the option to take effect.
 
 ### Game Ports
 
