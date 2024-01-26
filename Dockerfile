@@ -31,7 +31,7 @@ ENV PORT= \
 COPY ./scripts/* /home/steam/server/
 RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh
 
-RUN mkdir -p /workspace
+RUN mkdir /workspace
 
 RUN mv /home/steam/server/backup.sh /usr/local/bin/palbackup
 RUN mv /home/steam/server/start.sh /usr/local/bin/palstart
@@ -39,8 +39,14 @@ RUN mv /home/steam/server/init.sh /usr/local/bin/palinit
 
 WORKDIR /workspace
 
+RUN palinit
+
+RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/download/1.3.0-Update-2/PalServer-Linux-Test-Patch-Update-2 -o /tmp/PalServer-Linux-Test &&\
+    mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test &&\
+    chmod +x /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
+
+
 HEALTHCHECK --start-period=5m \
     CMD pgrep "PalServer-Linux" > /dev/null || exit 1
 
 EXPOSE ${PORT} ${RCON_PORT}
-ENTRYPOINT exec palinit
