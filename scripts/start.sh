@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -f /workspace/PalServer.sh ]; then
-    mv /workspace_mirror/* /workspace
+    cp -r /workspace_mirror/* /workspace/
 fi
 
 STARTCOMMAND="/workspace/PalServer.sh"
