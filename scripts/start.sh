@@ -79,8 +79,7 @@ port: ${RCON_PORT}
 password: ${ADMIN_PASSWORD}
 EOL
 
-printf "\e[0;32m*****正在启动服务器*****\e[0m\n"
-echo "${STARTCOMMAND}"
+printf "\e[0;32m*****正在启动服务器*****\e[0m\n
 su steam -c nohup "${STARTCOMMAND}" &
 
 sleep 15
