@@ -31,7 +31,7 @@ ENV PORT= \
 COPY ./scripts/* /home/steam/server/
 RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh
 
-RUN mkdir /workspace
+RUN mkdir -p /workspace
 
 RUN mv /home/steam/server/backup.sh /usr/local/bin/palbackup
 RUN mv /home/steam/server/start.sh /usr/local/bin/palstart
@@ -45,6 +45,7 @@ RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/d
     mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test &&\
     chmod +x /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
 
+RUN mv /workspace /workspace_mirror
 
 HEALTHCHECK --start-period=5m \
     CMD pgrep "PalServer-Linux" > /dev/null || exit 1
