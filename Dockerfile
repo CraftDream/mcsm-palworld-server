@@ -40,15 +40,12 @@ RUN mv /home/steam/server/init.sh /usr/local/bin/palinit
 RUN palinit
 
 RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/download/1.3.0-Update-4-Beta/PalServer-Linux-Test-Patch-Update-4-Beta -o /tmp/PalServer-Linux-Test
-
-RUN ls -l
-RUN ls -l /tmp
-RUN ls -l /workspace
 RUN mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
 RUN chmod +x /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
 
 RUN cp -r /workspace/* /workspace_mirror/
 RUN rm -rf /workspace/*
+RUN chown -R root:root /workspace_mirror
 
 HEALTHCHECK --start-period=5m \
     CMD pgrep "PalServer-Linux" > /dev/null || exit 1
