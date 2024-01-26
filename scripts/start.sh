@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 if [ ! -f /workspace/PalServer.sh ]; then
     cp -r /workspace_mirror/* /workspace/
@@ -82,4 +82,5 @@ EOL
 printf "\e[0;32m*****正在启动服务器*****\e[0m\n"
 echo "${STARTCOMMAND}"
 su steam -c nohup "${STARTCOMMAND}" &
+
 rcon-cli
