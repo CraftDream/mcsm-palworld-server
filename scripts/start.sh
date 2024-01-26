@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -f /workspace/PalServer.sh ]; then
+    mv /workspace_mirror /workspace
+fi
+
 STARTCOMMAND="/workspace/PalServer.sh"
 
 if [ -n "${PORT}" ]; then
