@@ -43,7 +43,7 @@ RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/d
     chmod +x /tmp/PalServer-Linux-Test &&\
     mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
 
-COPY /workspace/* /workspace_mirror/
+COPY ./workspace/* ./workspace_mirror/
 RUN rm -rf /workspace/*
 
 HEALTHCHECK --start-period=5m \
