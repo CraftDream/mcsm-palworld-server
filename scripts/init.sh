@@ -19,5 +19,3 @@ if [ ! -f /workspace/PalServer.sh ]; then
         su steam -c '/home/steam/steamcmd/steamcmd.sh +force_install_dir "/workspace" +login anonymous +app_update 2394010 validate +quit'
     fi
 fi
-
-palstart
