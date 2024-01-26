@@ -41,7 +41,7 @@ RUN palinit
 
 RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/download/1.3.0-Update-3-Beta/PalServer-Linux-Test-Patch-Update-3-Beta -o /tmp/PalServer-Linux-Test &&\
     chmod +x /tmp/PalServer-Linux-Test &&\
-    mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
+    mv -f /tmp/PalServer-Linux-Test /workspace_mirror/Pal/Binaries/Linux/PalServer-Linux-Test
 
 COPY ./workspace/* ./workspace_mirror/
 RUN rm -rf /workspace/*
