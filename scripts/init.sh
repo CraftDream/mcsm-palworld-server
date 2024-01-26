@@ -10,6 +10,7 @@ else
 fi
 
 mkdir -p /workspace/backups
+chown -R steam:steam /workspace
 
 if [ "${UPDATE_ON_BOOT}" = true ]; then
     printf "\e[0;32m*****开始安装/更新*****\e[0m\n"
