@@ -16,16 +16,3 @@ if [ "${UPDATE_ON_BOOT}" = true ]; then
     printf "\e[0;32m*****开始安装/更新*****\e[0m\n"
     su steam -c '/home/steam/steamcmd/steamcmd.sh +force_install_dir "/workspace" +login anonymous +app_update 2394010 validate +quit'
 fi
-
-term_handler() {
-    if [ "${RCON_ENABLED}" = true ]; then
-        rcon-cli save
-        rcon-cli shutdown 1
-    else # Does not save
-        kill -SIGTERM "$(pidof PalServer-Linux-Test)"
-    fi
-    tail --pid=$killpid -f 2>/dev/null
-}
-
-trap 'term_handler' SIGTERM
-
