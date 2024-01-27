@@ -1,10 +1,4 @@
 #!/bin/bash
-
-if [ ! -f /workspace/PalServer.sh ]; then
-    cp -r /workspace_mirror/* /workspace/
-    chown -R steam:steam /workspace
-fi
-
 STARTCOMMAND="/workspace/PalServer.sh"
 
 if [ -n "${PORT}" ]; then
