@@ -8,8 +8,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q https://github.com/itzg/rcon-cli/releases/download/1.6.4/rcon-cli_1.6.4_linux_amd64.tar.gz -O - | tar -xz
-RUN mv rcon-cli /usr/bin/rcon-cli
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN wget -q https://github.com/itzg/rcon-cli/releases/download/1.6.4/rcon-cli_1.6.4_linux_amd64.tar.gz -O - | tar -xz && \
+    mv rcon-cli /usr/bin/rcon-cli
 
 ENV PORT= \
     PUID=1000 \
@@ -29,26 +30,13 @@ ENV PORT= \
     TZ=UTC
 
 COPY ./scripts/* /home/steam/server/
-RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh
+RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh && \
+    mv /home/steam/server/backup.sh /usr/local/bin/backup
 
-RUN mkdir -p /workspace /workspace_mirror
-
-RUN mv /home/steam/server/backup.sh /usr/local/bin/palbackup
-RUN mv /home/steam/server/start.sh /usr/local/bin/palstart
-RUN mv /home/steam/server/init.sh /usr/local/bin/palinit
-
-RUN palinit
-
-RUN curl -L https://github.com/VeroFess/PalWorld-Server-Unoffical-Fix/releases/download/1.3.0-Update-4-Beta/PalServer-Linux-Test-Patch-Update-4-Beta -o /tmp/PalServer-Linux-Test
-RUN mv -f /tmp/PalServer-Linux-Test /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
-RUN chmod +x /workspace/Pal/Binaries/Linux/PalServer-Linux-Test
-
-RUN cp -r /workspace/* /workspace_mirror/
-RUN rm -rf /workspace/*
-RUN chown -R root:root /workspace_mirror
+WORKDIR /home/steam/server
 
 HEALTHCHECK --start-period=5m \
     CMD pgrep "PalServer-Linux" > /dev/null || exit 1
 
 EXPOSE ${PORT} ${RCON_PORT}
-WORKDIR /workspace
+ENTRYPOINT ["/home/steam/server/init.sh"]
