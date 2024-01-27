@@ -74,5 +74,5 @@ port: ${RCON_PORT}
 password: ${ADMIN_PASSWORD}
 EOL
 
-printf "\e[0;32m*****正在启动服务器*****\e[0m\n
+printf "\e[0;32m*****正在启动服务器*****\e[0m\n"
 su steam -c "${STARTCOMMAND}"
