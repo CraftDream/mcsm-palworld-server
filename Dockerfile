@@ -30,8 +30,7 @@ ENV PORT= \
     TZ=UTC
 
 COPY ./scripts/* /home/steam/server/
-RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh /home/steam/server/setup.sh && \
-    mv /home/steam/server/backup.sh /usr/local/bin/backup
+RUN chmod +x /home/steam/server/init.sh /home/steam/server/start.sh /home/steam/server/backup.sh /home/steam/server/setup.sh
 
 RUN mkdir -p /workspace /workspace_mirror
 
