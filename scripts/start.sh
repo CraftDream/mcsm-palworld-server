@@ -1,4 +1,5 @@
 #!/bin/bash
+
 STARTCOMMAND="/workspace/PalServer.sh"
 
 if [ -n "${PORT}" ]; then
