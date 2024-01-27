@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 if [ ! -f /workspace/PalServer.sh ]; then
     cp -r /workspace_mirror/* /workspace/
@@ -80,8 +80,4 @@ password: ${ADMIN_PASSWORD}
 EOL
 
 printf "\e[0;32m*****正在启动服务器*****\e[0m\n
-su steam -c nohup "${STARTCOMMAND}" &
-
-sleep 15
-
-rcon-cli
+su steam -c "${STARTCOMMAND}"
