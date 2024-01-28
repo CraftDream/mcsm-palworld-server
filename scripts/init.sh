@@ -20,7 +20,7 @@ trap 'term_handler' SIGTERM
 palstart &
 killpid="$!"
 
-sleep 15
+sleep 30
 rcon-cli
 
 wait $killpid
