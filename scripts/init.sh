@@ -19,4 +19,8 @@ trap 'term_handler' SIGTERM
 
 palstart &
 killpid="$!"
+
+sleep 15
+rcon-cli &
+
 wait $killpid
