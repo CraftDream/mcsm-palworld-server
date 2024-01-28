@@ -21,6 +21,6 @@ palstart &
 killpid="$!"
 
 sleep 15
-rcon-cli &
+rcon-cli
 
 wait $killpid
